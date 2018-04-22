@@ -11,12 +11,16 @@ import java.util.Vector;
  *
  * @author ky94
  */
-public class AvionMarchandise {
-    private Vector typeMarchandise;
+public class AvionMarchandise extends Avion{
+	private int masseMax;
+	private int vlumeMax;
+	
 
-    public AvionMarchandise(Vector typeMarchandise) {
-        super();
-        this.typeMarchandise = typeMarchandise;
+    public AvionMarchandise(String immatricule, String nom, String marque, String compagne,  int nbrPersonnel, int maintenance,int massemax,int volumemax)
+    {
+        super( immatricule,  nom, marque, compagne, nbrPersonnel,maintenance);
+ this.masseMax=massemax;
+ this.vlumeMax=volumemax;
     }
     
 }

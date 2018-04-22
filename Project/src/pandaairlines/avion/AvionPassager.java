@@ -9,12 +9,21 @@ package pandaairlines.avion;
  *
  * @author ky94
  */
-public class AvionPassager {
-    private int nbrPassager;
+public class AvionPassager extends Avion {
+	private int nbrPassages;
 
-    public AvionPassager(int nbrPassager) {
-        super();
-        this.nbrPassager = nbrPassager;
+    public int getNbrPassages() {
+		return nbrPassages;
+	}
+
+	public void setNbrPassages(int nbrPassages) {
+		this.nbrPassages = nbrPassages;
+	}
+
+	public AvionPassager(String immatricule, String nom, String marque, String compagne,  int nbrPersonnel, int maintenance,int nbrpassagers){
+        super( immatricule,  nom, marque, compagne, nbrPersonnel,maintenance);
+       
+        this.nbrPassages=nbrpassagers;
     }
     
 }

@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pandaairlines.db_cnx;
 
-/**
- *
- * @author ky94
- */
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -24,7 +15,7 @@ public class dbcnx {
     private static String user;
     private static String password;
 
-    static private void connecter() {
+    public static void connecter() {
         url = "jdbc:mysql://localhost:3306/formationdatabase";
         driver = "com.mysql.jdbc.Driver";
         user = "root";
