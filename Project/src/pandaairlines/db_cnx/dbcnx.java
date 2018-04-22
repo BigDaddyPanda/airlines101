@@ -9,7 +9,7 @@ import java.sql.Statement;
 
 public class dbcnx {
 
-    static public Connection conn = null;
+    private static Connection connecter = null;
     private static String url;
     private static String driver;
     private static String user;
@@ -29,7 +29,7 @@ public class dbcnx {
         }
 
         try {
-            conn = DriverManager.getConnection(url, user, password);
+            connecter = DriverManager.getConnection(url, user, password);
 
         } catch (SQLException e) {
             System.out.println(e);
@@ -39,15 +39,18 @@ public class dbcnx {
 
     static public void deconnecter() {
         try {
-            conn.close();
+            connecter.close();
 
         } catch (SQLException e) {
             System.out.println(e);
         }
     }
-    
-    public void connect(){
-        if(conn==null) connecter();
+
+    public static Connection connect() {
+        if (connecter == null) {
+            connecter();
+        }
+        return connecter;
     }
-    
+
 }

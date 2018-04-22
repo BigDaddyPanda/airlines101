@@ -11,9 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList; 
+import java.util.ArrayList;
 import java.util.Date;
-
 
 import pandaairlines.db_cnx.dbcnx;
 import pandaairlines.humanoid.Client;
@@ -21,8 +20,10 @@ import pandaairlines.humanoid.Client;
 /**
  *
  * @author ky94
- **/
+ *
+ */
 public class Vol {
+
     private int volId;
     private String vDepart;
     private String vArrive;
@@ -30,6 +31,7 @@ public class Vol {
     private String heureArrive;
     private int prix;
     private ArrayList<Escale> Escales;
+
     public Vol() {
     }
 
@@ -98,29 +100,29 @@ public class Vol {
     public void setEscales(ArrayList<Escale> Escales) {
         this.Escales = Escales;
     }
-    static public void ajouterClient(int idclient,int vol) {
-    	dbcnx.connecter();
-    	try {
-    		Statement st=dbcnx.conn.createStatement();
-    		ResultSet rs=st.executeQuery("select * from reservation where idclient= "+idclient+"idvol="+vol);
-    	if(rs.wasNull()) {
 
-    		
-    		PreparedStatement s=dbcnx.conn.prepareStatement("insert into reservation values(?,?,'?',?)");
-    		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH.mm.ss");
-    		System.err.println(sdf.format(System.currentTimeMillis()));
-    		Timestamp t=new Timestamp(System.currentTimeMillis());
-    		s.setInt(0,idclient);
-    		s.setInt(1,vol);
-    		
-    		s.executeUpdate();
-    		
-    	}else {
-    		
-    	}
-    	} catch (SQLException e) {
-    		// TODO Auto-generated catch block
-    		e.printStackTrace();
-    	}
+    static public void ajouterClient(int idclient, int vol) {
+        dbcnx.connecter();
+        try {
+            Statement st = dbcnx.connect().createStatement();
+            ResultSet rs = st.executeQuery("select * from reservation where idclient= " + idclient + "idvol=" + vol);
+            if (rs.wasNull()) {
+
+                PreparedStatement s = dbcnx.connect().prepareStatement("insert into reservation values(?,?,'?',?)");
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH.mm.ss");
+                System.err.println(sdf.format(System.currentTimeMillis()));
+                Timestamp t = new Timestamp(System.currentTimeMillis());
+                s.setInt(0, idclient);
+                s.setInt(1, vol);
+
+                s.executeUpdate();
+
+            } else {
+
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }
