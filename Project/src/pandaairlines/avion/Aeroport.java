@@ -10,23 +10,21 @@ package pandaairlines.avion;
  * @author ky94
  */
 public class Aeroport {
-    private int ref;
+   
     private String immatricule;
     private String nomAero;
-    private String ville;
+    private String adresse;
     private String pays;
 
-    public Aeroport(int ref, String immatricule, String nomAero, String ville, String pays) {
-        this.ref = ref;
+    public Aeroport( String immatricule, String nomAero, String adresse, String pays) {
+       
         this.immatricule = immatricule;
         this.nomAero = nomAero;
-        this.ville = ville;
+        this.adresse = adresse;
         this.pays = pays;
     }
 
-    public int getRef() {
-        return ref;
-    }
+   
 
     public String getImmatricule() {
         return immatricule;
@@ -36,17 +34,15 @@ public class Aeroport {
         return nomAero;
     }
 
-    public String getVille() {
-        return ville;
+    public String getAdresse() {
+        return adresse;
     }
 
     public String getPays() {
         return pays;
     }
 
-    public void setRef(int ref) {
-        this.ref = ref;
-    }
+   
 
     public void setImmatricule(String immatricule) {
         this.immatricule = immatricule;
@@ -56,12 +52,17 @@ public class Aeroport {
         this.nomAero = nomAero;
     }
 
-    public void setVille(String ville) {
-        this.ville = ville;
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
     }
 
     public void setPays(String pays) {
         this.pays = pays;
+    }
+    public static Aeroport chercheraeroport(int ref) {
+    	
+		return null;
+    	
     }
     
 }

@@ -11,11 +11,10 @@ import java.util.Date;
  *
  * @author ky94
  */
-public class Sol extends Personnel{
-
-    public Sol(String nom, String prenom, Date dateNaissance, int nbHeure) {
+public class Admin extends Personnel{
+    
+    public Admin(String nom, String prenom, Date dateNaissance, int nbHeure) {
         super(nom, prenom, dateNaissance, nbHeure);
     }
-
     
 }

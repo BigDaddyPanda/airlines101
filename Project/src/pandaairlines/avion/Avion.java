@@ -14,18 +14,16 @@ public abstract class Avion {
     private String nom;
     private String marque;
     private String compagne;
-    private int masseMax;
-    private int volumeMax;
+   
     private int nbrPersonnel;
     private int maintenance;
 
-    public Avion(String immatricule, String nom, String marque, String compagne, int masseMax, int volumeMax, int nbrPersonnel, int maintenance) {
+    public Avion(String immatricule, String nom, String marque, String compagne,  int nbrPersonnel, int maintenance) {
         this.immatricule = immatricule;
         this.nom = nom;
         this.marque = marque;
         this.compagne = compagne;
-        this.masseMax = masseMax;
-        this.volumeMax = volumeMax;
+       
         this.nbrPersonnel = nbrPersonnel;
         this.maintenance = maintenance;
     }
@@ -46,14 +44,7 @@ public abstract class Avion {
         return compagne;
     }
 
-    public int getMasseMax() {
-        return masseMax;
-    }
-
-    public int getVolumeMax() {
-        return volumeMax;
-    }
-
+   
     public int getNbrPersonnel() {
         return nbrPersonnel;
     }
@@ -78,13 +69,7 @@ public abstract class Avion {
         this.compagne = compagne;
     }
 
-    public void setMasseMax(int masseMax) {
-        this.masseMax = masseMax;
-    }
-
-    public void setVolumeMax(int volumeMax) {
-        this.volumeMax = volumeMax;
-    }
+   
 
     public void setNbrPersonnel(int nbrPersonnel) {
         this.nbrPersonnel = nbrPersonnel;
@@ -94,4 +79,7 @@ public abstract class Avion {
         this.maintenance = maintenance;
     }
     
+    public void ajouterAvion(Avion a){
+        
+    }
 }

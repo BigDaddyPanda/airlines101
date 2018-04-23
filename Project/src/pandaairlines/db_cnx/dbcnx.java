@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pandaairlines.db_cnx;
 
-/**
- *
- * @author ky94
- */
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -18,14 +9,15 @@ import java.sql.Statement;
 
 public class dbcnx {
 
-    static public Connection conn = null;
+    private static Connection connecter = null;
     private static String url;
     private static String driver;
     private static String user;
     private static String password;
+    public static int identifier;
 
-    static private void connecter() {
-        url = "jdbc:mysql://localhost:3306/formationdatabase";
+    public static void connecter() {
+        url = "jdbc:mysql://localhost:3306/airlines";
         driver = "com.mysql.jdbc.Driver";
         user = "root";
         password = "";
@@ -38,7 +30,7 @@ public class dbcnx {
         }
 
         try {
-            conn = DriverManager.getConnection(url, user, password);
+            connecter = DriverManager.getConnection(url, user, password);
 
         } catch (SQLException e) {
             System.out.println(e);
@@ -48,15 +40,18 @@ public class dbcnx {
 
     static public void deconnecter() {
         try {
-            conn.close();
+            connecter.close();
 
         } catch (SQLException e) {
             System.out.println(e);
         }
     }
-    
-    public void connect(){
-        if(conn==null) connecter();
+
+    public static Connection connect() {
+        if (connecter == null) {
+            connecter();
+        }
+        return connecter;
     }
-    
+
 }
