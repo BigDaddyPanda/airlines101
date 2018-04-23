@@ -1,4 +1,4 @@
-package pandaairlines.humanoid;
+package src.pandaairlines.humanoid;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
