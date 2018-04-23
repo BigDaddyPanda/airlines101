@@ -14,7 +14,7 @@ public class dbcnx {
     private static String driver;
     private static String user;
     private static String password;
-    public static String identifier;
+    public static int identifier;
 
     public static void connecter() {
         url = "jdbc:mysql://localhost:3306/airlines";
@@ -52,10 +52,6 @@ public class dbcnx {
             connecter();
         }
         return connecter;
-    }
-
-    public static void setidentifier(String string) {
-        identifier=string;
     }
 
 }

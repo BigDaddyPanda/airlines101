@@ -168,20 +168,19 @@ public class Client {
 
     }
 
-    public static boolean login(String login,String pw) {
+    public static boolean login(String login, String pw) {
         try {
-            PreparedStatement st = dbcnx.connect().prepareStatement("SELECT * FROM client WHERE numeropasseport = '" + login + "' AND password= '" + pw+"'");
+            PreparedStatement st = dbcnx.connect().prepareStatement("SELECT * FROM client WHERE numeropasseport = '" + login + "' AND password= '" + pw + "'");
             ResultSet rs = st.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
+                dbcnx.identifier = rs.getInt("idclient");
+
                 return true;
             }
-        }
-        catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println("Bad kittens not doing their jobs");
         }
         return false;
     }
-    public static void main(String[] args) {
-        System.out.println(Client.login("x1", "222"));
-    }
+
 }
