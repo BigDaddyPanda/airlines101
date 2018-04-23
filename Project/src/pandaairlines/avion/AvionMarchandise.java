@@ -5,22 +5,19 @@
  */
 package pandaairlines.avion;
 
-import java.util.Vector;
-
 /**
  *
  * @author ky94
  */
-public class AvionMarchandise extends Avion{
-	private int masseMax;
-	private int vlumeMax;
-	
+public class AvionMarchandise extends Avion {
 
-    public AvionMarchandise(String immatricule, String nom, String marque, String compagne,  int nbrPersonnel, int maintenance,int massemax,int volumemax)
-    {
-        super( immatricule,  nom, marque, compagne, nbrPersonnel,maintenance);
- this.masseMax=massemax;
- this.vlumeMax=volumemax;
+    private int masseMax;
+    private int vlumeMax;
+
+    public AvionMarchandise(String immatricule, String nom, String marque, String compagne, int nbrPersonnel, int maintenance, int massemax, int volumemax) {
+        super(immatricule, nom, marque, compagne, nbrPersonnel, maintenance);
+        this.masseMax = massemax;
+        this.vlumeMax = volumemax;
     }
-    
+
 }

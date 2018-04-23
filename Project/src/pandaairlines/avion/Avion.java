@@ -79,4 +79,7 @@ public abstract class Avion {
         this.maintenance = maintenance;
     }
     
+    public void ajouterAvion(Avion a){
+        
+    }
 }
