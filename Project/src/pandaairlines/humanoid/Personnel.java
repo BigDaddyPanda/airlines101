@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import pandaairlines.db_cnx.dbcnx;
+import pandaairlines.vol.Vol;
 
 /**
  *
@@ -23,32 +24,50 @@ public abstract class Personnel implements Salairie {
     private Date dateNaissance;
     private int nbHeure;
     private float salaire;
+
     public Personnel(String nom, String prenom, Date dateNaissance, int nbHeure) {
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
         this.nbHeure = nbHeure;
     }
+
     @Override
-    public float calculSalaire(){
-        return salaire*nbHeure;
+    public float calculSalaire() {
+        return salaire * nbHeure;
     }
-    public static boolean login(String login,String pw) {
+
+    public static boolean login(String login, String pw) {
         try {
-            PreparedStatement st = dbcnx.connect().prepareStatement("SELECT * FROM personnel WHERE login = '" + login + "' AND password= '" + pw+"'");
+            PreparedStatement st = dbcnx.connect().prepareStatement("SELECT * FROM personnel WHERE login = '" + login + "' AND password= '" + pw + "'");
             ResultSet rs = st.executeQuery();
-            if(rs.next()){
-                dbcnx.identifier=rs.getInt("idpersonnel");
+            if (rs.next()) {
+                dbcnx.identifier = rs.getInt("idpersonnel");
                 return true;
             }
-        }
-        catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println("Bad kittens not doing their jobs");
         }
         return false;
     }
-    
-    public static ArrayList loadFlight(){
-        
+
+    public static ArrayList loadFlight(String req, boolean isAdmin) {
+        ArrayList<Vol> A = new ArrayList();
+        try {
+            PreparedStatement st = dbcnx.
+                    connect().prepareStatement("SELECT * FROM vol WHERE '"
+                            + req + "' ");
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                A.add(new Vol(rs.getInt(""), rs.getString("depart"),
+                        rs.getString("arrive"),
+                        rs.getTime("heuredepart").toString(),
+                        rs.getTime("heurearrive").toString(),
+                        rs.getString("type"), rs.getInt("prix")));
+            }
+        } catch (SQLException e) {
+            System.out.println("Bad kittens not doing their jobs");
+        }
+        return A;
     }
 }

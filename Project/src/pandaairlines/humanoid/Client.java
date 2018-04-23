@@ -1,4 +1,4 @@
-package src.pandaairlines.humanoid;
+package pandaairlines.humanoid;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -88,7 +88,6 @@ public class Client {
         dbcnx.connecter();
         try {
             PreparedStatement st = dbcnx.connect().prepareStatement("insert into client values('?','?','?','?')");
-
             st.setString(0, nom);
             st.setString(1, prenom);
             Date d = java.sql.Date.valueOf(date);

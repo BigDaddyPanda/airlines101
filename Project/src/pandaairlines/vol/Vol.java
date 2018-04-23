@@ -13,9 +13,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import pandaairlines.avion.Avion;
 
 import pandaairlines.db_cnx.dbcnx;
-import pandaairlines.humanoid.Client;
 
 /**
  *
@@ -29,20 +31,30 @@ public class Vol {
     private String vArrive;
     private String heureDepart;
     private String heureArrive;
+    private String type;
+    private Avion avion;
     private int prix;
-    private ArrayList<Escale> Escales;
 
     public Vol() {
     }
 
-    public Vol(int volId, String vDepart, String vArrive, String heureDepart, String heureArrive, int prix, ArrayList<Escale> Escales) {
+    public Vol(int volId, String vDepart, String vArrive, String heureDepart, String heureArrive, String type, int prix) {
         this.volId = volId;
         this.vDepart = vDepart;
+        this.type = type;
         this.vArrive = vArrive;
         this.heureDepart = heureDepart;
         this.heureArrive = heureArrive;
         this.prix = prix;
-        this.Escales = Escales;
+
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public Avion getAvion() {
+        return avion;
     }
 
     public int getVolId() {
@@ -69,8 +81,12 @@ public class Vol {
         return prix;
     }
 
-    public ArrayList<Escale> getEscales() {
-        return Escales;
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setAvion(Avion avion) {
+        this.avion = avion;
     }
 
     public void setVolId(int volId) {
@@ -97,28 +113,21 @@ public class Vol {
         this.prix = prix;
     }
 
-    public void setEscales(ArrayList<Escale> Escales) {
-        this.Escales = Escales;
-    }
-
     static public void ajouterClient(int idclient, int vol) {
-        dbcnx.connecter();
         try {
             Statement st = dbcnx.connect().createStatement();
             ResultSet rs = st.executeQuery("select * from reservation where idclient= " + idclient + "idvol=" + vol);
             if (rs.wasNull()) {
-
                 PreparedStatement s = dbcnx.connect().prepareStatement("insert into reservation values(?,?,'?',?)");
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH.mm.ss");
                 System.err.println(sdf.format(System.currentTimeMillis()));
                 Timestamp t = new Timestamp(System.currentTimeMillis());
                 s.setInt(0, idclient);
                 s.setInt(1, vol);
-
                 s.executeUpdate();
 
             } else {
-
+                return;
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block

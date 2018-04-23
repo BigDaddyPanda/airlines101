@@ -3,28 +3,34 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package pandaairlines.avion;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import pandaairlines.db_cnx.dbcnx;
+import pandaairlines.vol.Vol;
+
 /**
  *
  * @author ky94
  */
 public class Aeroport {
-   
+
     private String immatricule;
     private String nomAero;
     private String adresse;
     private String pays;
 
-    public Aeroport( String immatricule, String nomAero, String adresse, String pays) {
-       
+    public Aeroport(String immatricule, String nomAero, String adresse, String pays) {
+
         this.immatricule = immatricule;
         this.nomAero = nomAero;
         this.adresse = adresse;
         this.pays = pays;
     }
-
-   
 
     public String getImmatricule() {
         return immatricule;
@@ -42,8 +48,6 @@ public class Aeroport {
         return pays;
     }
 
-   
-
     public void setImmatricule(String immatricule) {
         this.immatricule = immatricule;
     }
@@ -59,11 +63,24 @@ public class Aeroport {
     public void setPays(String pays) {
         this.pays = pays;
     }
-    public static Aeroport chercheraeroport(int ref) {
-    	
-		return null;
-    	
-    }
-    
-}
 
+    public String getPaysfromId(String aeroId) {
+        try {
+            Statement st = dbcnx.connect().createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM aeroport where immatricule ='" + aeroId + "'");
+            if (rs.next()) {
+                return rs.getString("pays") + "/" + rs.getString("adress");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return this.pays + "/" + this.adresse;
+    }
+
+    public static Aeroport chercheraeroport(int ref) {
+
+        return null;
+
+    }
+
+}
