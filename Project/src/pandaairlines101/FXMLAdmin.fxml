@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="403.0" prefWidth="691.0" style="-fx-background-color: #007abb;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pandaairlines101.FXMLUserController">
+   <children>
+      <AnchorPane layoutX="35.0" layoutY="85.0" prefHeight="293.0" prefWidth="622.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <ScrollPane hbarPolicy="NEVER" layoutX="14.0" layoutY="59.0" prefHeight="200.0" prefWidth="200.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <JFXListView prefHeight="375.0" prefWidth="200.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+            <JFXTextField alignment="CENTER_RIGHT" labelFloat="true" layoutX="102.0" layoutY="24.0" prefHeight="25.0" prefWidth="112.0" promptText="filtrer">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </JFXTextField>
+            <Pane layoutX="221.0" layoutY="22.0" prefHeight="111.0" prefWidth="390.0">
+               <children>
+                  <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="14.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/airplaneoff.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="195.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/airplaneon.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="276.0" layoutY="17.0" prefHeight="17.0" prefWidth="97.0" text="Jedda AP" />
+                  <Label layoutX="104.0" layoutY="39.0" prefHeight="17.0" prefWidth="91.0" text="23/04/2018 " />
+                  <Label layoutX="88.0" layoutY="17.0" prefHeight="17.0" prefWidth="97.0" text="Venturas AP" />
+                  <JFXButton layoutX="314.0" layoutY="72.0" style="-fx-background-color: #24a398;" text="Reserver" />
+                  <Label layoutX="171.0" layoutY="76.0" text="Prix:" />
+                  <Label layoutX="216.0" layoutY="76.0" text="\$22222.2" />
+                  <Label layoutX="104.0" layoutY="56.0" prefHeight="17.0" prefWidth="91.0" text="00:42" />
+                  <Label layoutX="299.0" layoutY="56.0" prefHeight="17.0" prefWidth="91.0" text="06:09" />
+                  <Label layoutX="299.0" layoutY="39.0" prefHeight="17.0" prefWidth="91.0" text="23/04/2018 " />
+                  <Label layoutX="87.0" layoutY="-6.0" prefHeight="17.0" prefWidth="97.0" text="Las Vegas" />
+                  <Label layoutX="275.0" layoutY="-6.0" prefHeight="17.0" prefWidth="97.0" text="Mecca" />
+               </children>
+            </Pane>
+            <Pane layoutX="233.0" layoutY="145.0" prefHeight="94.0" prefWidth="338.0" style="-fx-background-color: #fafafa;">
+               <children>
+                  <Label layoutX="66.0" layoutY="23.0" prefHeight="17.0" prefWidth="97.0" text="Las Vegas" />
+                  <Label layoutX="66.0" layoutY="40.0" prefHeight="17.0" prefWidth="97.0" text="Las Vegas" />
+                  <ImageView fitHeight="25.0" fitWidth="22.0" layoutX="302.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/next_off.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="25.0" fitWidth="22.0" layoutX="14.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/prev_on.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="44.0" fitWidth="48.0" layoutX="291.0" layoutY="1.0" opacity="0.65" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/nextflight.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="503.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../img/people.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="406.0" layoutY="31.0" prefHeight="31.0" prefWidth="85.0" style="-fx-background-color: #ffffff;" text="Samir Lahnin" textAlignment="RIGHT" textOverrun="CLIP" wrapText="true" />
+   </children>
+</AnchorPane>
