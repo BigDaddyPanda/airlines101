@@ -64,7 +64,7 @@ public class Aeroport {
         this.pays = pays;
     }
 
-    public String getPaysfromId(String aeroId) {
+    public static String getPaysStringfromId(String aeroId) {
         try {
             Statement st = dbcnx.connect().createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM aeroport where immatricule ='" + aeroId + "'");
@@ -74,13 +74,26 @@ public class Aeroport {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return this.pays + "/" + this.adresse;
+        return "N/A - N/A";
     }
 
-    public static Aeroport chercheraeroport(int ref) {
+    public static Aeroport chercheraeroport(String immatricule) {
+        Aeroport aero =new Aeroport("N/A", "N/A", "N/A", "N/A");
+        try {
 
-        return null;
+            Statement st = dbcnx.connect().createStatement();
+            ResultSet rs = st.executeQuery("select * from aeroport where immatricule ='" + immatricule + "'");
+            if (rs.next()) {
+                aero=new Aeroport(rs.getString("immatricule"), 
+                        rs.getString("nom"), 
+                        rs.getString("adresse"), 
+                        rs.getString("pays"));
+            }
 
+        } catch (SQLException ex) {
+            Logger.getLogger(Aeroport.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return aero;
     }
 
 }

@@ -12,6 +12,8 @@ import java.sql.Statement;
  */
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.*;
 import pandaairlines.db_cnx.dbcnx;
 import pandaairlines.vol.Vol;
@@ -22,30 +24,46 @@ import pandaairlines.vol.Vol;
  */
 public class Client {
 
-    private SimpleIntegerProperty clientNum;
+    private SimpleIntegerProperty idClient;
     private SimpleStringProperty nom;
     private SimpleStringProperty prenom;
     private SimpleStringProperty dateNaissance;
     private SimpleStringProperty numeroPassport;
 
     public Client() {
-        clientNum = null;
+        idClient = null;
         nom = null;
         prenom = null;
         dateNaissance = null;
         numeroPassport = null;
     }
 
-    public Client(Integer clientNum, String nom, String prenom, String dateNaissance, String numeroPassport) {
-        this.clientNum = new SimpleIntegerProperty(clientNum);
+    public Client(Integer idClient, String nom, String prenom, String dateNaissance, String numeroPassport) {
+        this.idClient = new SimpleIntegerProperty(idClient);
         this.nom = new SimpleStringProperty(nom);
         this.prenom = new SimpleStringProperty(prenom);
         this.dateNaissance = new SimpleStringProperty(dateNaissance);
         this.numeroPassport = new SimpleStringProperty(numeroPassport);
     }
 
-    public Integer getClientNum() {
-        return clientNum.get();
+    public Client(int idClient) {
+        Statement stmnt;
+        try {
+            stmnt = dbcnx.connect().createStatement();
+            ResultSet res = stmnt.executeQuery("select count(*) from client where idclient=" + idClient);
+            this.idClient = new SimpleIntegerProperty(idClient);
+            this.nom = new SimpleStringProperty(res.getString("nom"));
+            this.prenom = new SimpleStringProperty(res.getString("prenom"));
+            this.dateNaissance = new SimpleStringProperty(res.getDate("datenaissance").toString());
+            this.numeroPassport = new SimpleStringProperty(res.getString("numeropasseport"));
+        } catch (SQLException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public Integer getidClient() {
+        return idClient.get();
     }
 
     public String getNom() {
@@ -64,8 +82,8 @@ public class Client {
         return numeroPassport.get();
     }
 
-    public void setClientNum(Integer clientNum) {
-        this.clientNum.set(clientNum);
+    public void setidClient(Integer idClient) {
+        this.idClient.set(idClient);
     }
 
     public void setNom(String nom) {
@@ -110,7 +128,7 @@ public class Client {
             ResultSet rs = st.executeQuery("select * from client");
 
             while (rs.next()) {
-                c.setClientNum(rs.getInt("idclient"));
+                c.setidClient(rs.getInt("idclient"));
                 c.setNom(rs.getString("nom"));
                 c.setPrenom(rs.getString("prenom"));
                 c.setDateNaissance(rs.getString("datenaissance"));

@@ -13,11 +13,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pandaairlines.avion.Avion;
 
 import pandaairlines.db_cnx.dbcnx;
+import pandaairlines.humanoid.Client;
 
 /**
  *
@@ -133,5 +135,42 @@ public class Vol {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
+
+//    public static ArrayList rechercherClient(int num) {
+//        ArrayList a = null;
+//        Client c = null;
+//        try {
+//
+//            Statement st = dbcnx.connect().createStatement();
+//            ResultSet rs = st.executeQuery("select * from client where idclient=" + num);
+//            if (rs.next()) {                
+//                a.add(c);
+//                Statement stmnt = dbcnx.connect().createStatement();
+//                ResultSet res = stmnt.executeQuery("select count(*) from reservation where idclient=" + num);
+//                if (res.next()) {
+//                    a.add(res.getInt(0));
+//                } else {
+//                    a.add(0);
+//                }
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Vol.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return a;
+//    }
+
+    public static ArrayList rechercherReserves(int volId) {
+        ArrayList<Client> a = new ArrayList();
+        try {
+            Statement st = dbcnx.connect().createStatement();
+            ResultSet rs = st.executeQuery("select * from reservation where idvol=" + volId);
+            if (rs.next()) {
+                a.add(new Client(rs.getInt("idclient")));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Vol.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return a;
     }
 }
