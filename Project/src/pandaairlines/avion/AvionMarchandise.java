@@ -5,6 +5,11 @@
  */
 package pandaairlines.avion;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import pandaairlines.db_cnx.dbcnx;
+
 /**
  *
  * @author ky94
@@ -18,6 +23,35 @@ public class AvionMarchandise extends Avion {
         super(immatricule, nom, marque, compagne, nbrPersonnel, maintenance);
         this.masseMax = massemax;
         this.volumeMax = volumemax;
+    }
+
+    public AvionMarchandise() {
+        super();
+        this.masseMax = 0;
+        this.volumeMax = 0;
+    }
+
+    public static AvionMarchandise chercheravionmarchandise(String immatricule) {
+        AvionMarchandise avmar = new AvionMarchandise();
+        try {
+            Statement st = dbcnx.connect().createStatement();
+            ResultSet rs = st.executeQuery("select * from avion where idavion=" + immatricule + " and type ='marchandise'");
+            if (rs.next()) {
+
+                avmar = new AvionMarchandise(immatricule,
+                        rs.getString("nom"),
+                        rs.getString("marque"),
+                        rs.getString("companie"),
+                        rs.getInt("nombrepersonnel"),
+                        rs.getInt("maint"),
+                        rs.getInt("massemax"),
+                        rs.getInt("volumemax"));
+            }
+
+        } catch (SQLException ex) {
+            //Logger.getLogger(AvionMarchandise.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return avmar;
     }
 
 }

@@ -5,27 +5,38 @@
  */
 package pandaairlines.avion;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author ky94
  */
 public abstract class Avion {
+
     private String immatricule;
     private String nom;
     private String marque;
     private String compagne;
-   
+
     private int nbrPersonnel;
     private int maintenance;
 
-    public Avion(String immatricule, String nom, String marque, String compagne,  int nbrPersonnel, int maintenance) {
+    public Avion(String immatricule, String nom, String marque, String compagne, int nbrPersonnel, int maintenance) {
         this.immatricule = immatricule;
         this.nom = nom;
         this.marque = marque;
         this.compagne = compagne;
-       
         this.nbrPersonnel = nbrPersonnel;
         this.maintenance = maintenance;
+    }
+
+    public Avion() {
+        this.immatricule = "";
+        this.nom = "";
+        this.marque = "";
+        this.compagne = "";
+        this.nbrPersonnel = 0;
+        this.maintenance = 0;
     }
 
     public String getImmatricule() {
@@ -44,7 +55,6 @@ public abstract class Avion {
         return compagne;
     }
 
-   
     public int getNbrPersonnel() {
         return nbrPersonnel;
     }
@@ -69,8 +79,6 @@ public abstract class Avion {
         this.compagne = compagne;
     }
 
-   
-
     public void setNbrPersonnel(int nbrPersonnel) {
         this.nbrPersonnel = nbrPersonnel;
     }
@@ -78,8 +86,5 @@ public abstract class Avion {
     public void setMaintenance(int maintenance) {
         this.maintenance = maintenance;
     }
-    
-    public void ajouterAvion(Avion a){
-        
-    }
+
 }

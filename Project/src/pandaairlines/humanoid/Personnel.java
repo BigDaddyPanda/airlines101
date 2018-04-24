@@ -8,6 +8,7 @@ package pandaairlines.humanoid;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import pandaairlines.db_cnx.dbcnx;
@@ -17,19 +18,26 @@ import pandaairlines.vol.Vol;
  *
  * @author ky94
  */
-public abstract class Personnel implements Salairie {
+public class Personnel implements Salairie {
 
     private String nom;
     private String prenom;
-    private Date dateNaissance;
+    private String dateNaissance;
+    private String fonction;
+    private String login;
+    private String password;
     private int nbHeure;
     private float salaire;
 
-    public Personnel(String nom, String prenom, Date dateNaissance, int nbHeure) {
+    public Personnel(String nom, String prenom, String dateNaissance, String fonction, String login, String password, int nbHeure, float salaire) {
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
+        this.fonction = fonction;
+        this.login = login;
+        this.password = password;
         this.nbHeure = nbHeure;
+        this.salaire = salaire;
     }
 
     @Override
@@ -70,4 +78,37 @@ public abstract class Personnel implements Salairie {
         }
         return A;
     }
+
+    public static boolean addPerso(String nom, String prenom, String dateNaissance, String fonction, String login, String password, int nbHeure, float salaire) {
+
+        try {
+            String req = "INSERT INTO `personnel` "
+                    + "( nom, prenom, dateNaissance, salaire, "
+                    + "nbHeure, fonction, login, password) "
+                    + "VALUES ( ?, ?, ?, ?, "
+                    + "?, ?, ?, ?)";
+            Statement st = dbcnx.connect().createStatement();
+            ResultSet rs = st.executeQuery("select * from personnel where login='" + login + "'");
+            System.out.println("sdsd");
+            if (!rs.next()) {
+                PreparedStatement prd = dbcnx.connect().prepareStatement(req);
+                prd.setString(1, nom);
+                prd.setString(2, prenom);
+                prd.setString(3, dateNaissance);
+                prd.setFloat(4, salaire);
+                prd.setInt(5, nbHeure);
+                prd.setString(6, fonction);
+                prd.setString(7, login);
+                prd.setString(8, password);
+
+                prd.execute();
+                return true;
+            }
+        } catch (SQLException ex) {
+            //Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+        }
+        return false;
+    }
+
 }

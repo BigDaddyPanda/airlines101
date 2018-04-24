@@ -12,40 +12,109 @@
 
 <AnchorPane id="AnchorPane" prefHeight="403.0" prefWidth="691.0" style="-fx-background-color: #007abb;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pandaairlines101.FXMLAdminController">
    <children>
-      <VBox disable="true" layoutY="-1.0" prefHeight="403.0" prefWidth="691.0">
+      <VBox layoutY="-1.0" prefHeight="403.0" prefWidth="691.0">
          <children>
             <AnchorPane prefHeight="77.0" prefWidth="622.0">
                <children>
-                  <JFXButton layoutX="429.0" layoutY="27.0" style="-fx-background-color: #0dbfa8;" text="Ajouter Vol" />
-                  <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                  <JFXButton layoutX="373.0" layoutY="26.0" prefWidth="70.0" style="-fx-background-color: #0dbfa8;" text="Employé" />
+                  <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="47.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../img/people.png" />
                      </image>
                   </ImageView>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="94.0" layoutY="23.0" prefHeight="31.0" prefWidth="85.0" style="-fx-background-color: #ffffff;" text="Samir Lahnin" textAlignment="RIGHT" textOverrun="CLIP" wrapText="true" />
-                  <JFXButton layoutX="520.0" layoutY="26.0" style="-fx-background-color: #d86643;" text="Rafraîchir" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="23.0" prefHeight="31.0" prefWidth="85.0" style="-fx-background-color: #ffffff;" text="Samir Lahnin" textAlignment="RIGHT" textOverrun="CLIP" wrapText="true" />
+                  <JFXButton layoutX="567.0" layoutY="26.0" prefWidth="70.0" style="-fx-background-color: #f2d764;" text="Rafraîchir" />
+                  <JFXButton layoutX="469.0" layoutY="26.0" prefWidth="70.0" style="-fx-background-color: #0dbfa8;" text="Vol" />
+                  <JFXButton layoutX="276.0" layoutY="26.0" prefWidth="70.0" style="-fx-background-color: #0dbfa8;" text="Avion" />
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="304.0" prefWidth="652.0" style="-fx-background-color: #ffffff;">
+            <TabPane prefHeight="332.0" prefWidth="706.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Vols">
+                     <content>
+                        <ScrollPane prefViewportHeight="306.0" prefViewportWidth="691.0">
+                           <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView editable="true" prefHeight="306.0" prefWidth="691.0">
+                                      <columns>
+                                        <TableColumn prefWidth="75.0" text="Identifiant Vol" />
+                                          <TableColumn prefWidth="75.0" text="Avion" />
+                                        <TableColumn prefWidth="75.0" text="Départ" />
+                                          <TableColumn prefWidth="75.0" text="Heure Départ" />
+                                          <TableColumn prefWidth="75.0" text="Arrivée" />
+                                          <TableColumn prefWidth="75.0" text="Heure Arrivée" />
+                                      </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </ScrollPane>
+                     </content>
+                </Tab>
+                  <Tab text="Employé">
+                     <content>
+                        <ScrollPane prefViewportHeight="306.0" prefViewportWidth="691.0">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView editable="true" prefHeight="306.0" prefWidth="691.0">
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                       <columns>
+                                          <TableColumn prefWidth="75.0" text="Identifiant" />
+                                          <TableColumn prefWidth="75.0" text="Nom" />
+                                          <TableColumn prefWidth="75.0" text="Prenom" />
+                                          <TableColumn prefWidth="75.0" text="Fonctionnalité" />
+                                          <TableColumn prefWidth="75.0" text="Nb Heures" />
+                                          <TableColumn prefWidth="75.0" text="Salaire" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </ScrollPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Avions">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <ScrollPane prefViewportHeight="306.0" prefViewportWidth="691.0">
+                                 <content>
+                                    <TableView editable="true" prefHeight="306.0" prefWidth="691.0">
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                       <columns>
+                                          <TableColumn prefWidth="75.0" text="Matricule" />
+                                          <TableColumn prefWidth="75.0" text="Designation" />
+                                          <TableColumn prefWidth="75.0" text="Marque" />
+                                          <TableColumn prefWidth="75.0" text="Type" />
+                                          <TableColumn prefWidth="75.0" text="Personnes" />
+                                          <TableColumn prefWidth="75.0" text="Charge" />
+                                       </columns>
+                                    </TableView>
+                                 </content>
+                              </ScrollPane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+            <AnchorPane prefHeight="39.0" prefWidth="691.0">
                <children>
-                  <TableView editable="true" layoutX="9.0" prefHeight="304.0" prefWidth="673.0">
-                    <columns>
-                      <TableColumn prefWidth="75.0" text="Vol id" />
-                        <TableColumn prefWidth="75.0" text="Avion" />
-                      <TableColumn prefWidth="75.0" text="Départ" />
-                        <TableColumn prefWidth="75.0" text="Heure Départ" />
-                        <TableColumn prefWidth="75.0" text="Arrivée" />
-                        <TableColumn prefWidth="75.0" text="Heure Arrivée" />
-                    </columns>
-                     <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                     </columnResizePolicy>
-                  </TableView>
+                  <JFXButton layoutX="548.0" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: #db2828;" text="Supprimer" textFill="WHITE" />
                </children>
             </AnchorPane>
          </children>
       </VBox>
-      <AnchorPane layoutX="9.0" layoutY="112.0" prefHeight="202.0" prefWidth="673.0" style="-fx-background-color: #ccd7d9;" visible="false">
+      <AnchorPane id="ajoutVol" layoutX="9.0" layoutY="112.0" prefHeight="202.0" prefWidth="673.0" style="-fx-background-color: #ccd7d9;" visible="false">
          <children>
             <JFXButton cancelButton="true" layoutX="571.0" layoutY="163.0" style="-fx-background-color: #e00000;" text="Annuler" />
             <JFXButton defaultButton="true" disable="true" layoutX="478.0" layoutY="163.0" style="-fx-background-color: #0dbfa8;" text="Ajouter Vol" />
@@ -64,11 +133,30 @@
             <JFXRadioButton layoutX="507.0" layoutY="67.0" text="Marchandise" />
          </children>
       </AnchorPane>
-      <AnchorPane id="ajoutAvion" layoutX="19.0" layoutY="122.0" prefHeight="202.0" prefWidth="673.0" style="-fx-background-color: #ccd7d9;">
+      <AnchorPane id="ajoutAvion" layoutX="52.0" layoutY="122.0" prefHeight="202.0" prefWidth="562.0" style="-fx-background-color: #ccd7d9;" visible="false">
          <children>
-            <JFXButton cancelButton="true" layoutX="571.0" layoutY="163.0" style="-fx-background-color: #e00000;" text="Annuler" />
-            <JFXButton defaultButton="true" disable="true" layoutX="478.0" layoutY="163.0" style="-fx-background-color: #0dbfa8;" text="Ajouter Vol" />
-            <JFXComboBox labelFloat="true" layoutX="45.0" layoutY="32.0" prefHeight="25.0" prefWidth="256.0" promptText="Airlines" />
+            <JFXButton cancelButton="true" layoutX="470.0" layoutY="163.0" style="-fx-background-color: #e00000;" text="Annuler" />
+            <JFXButton defaultButton="true" disable="true" layoutX="377.0" layoutY="163.0" style="-fx-background-color: #0dbfa8;" text="Ajouter Vol" />
+            <JFXComboBox labelFloat="true" layoutX="49.0" layoutY="30.0" prefHeight="25.0" prefWidth="256.0" promptText="Airlines" />
+            <JFXRadioButton layoutX="402.0" layoutY="33.0" text="Marchandise" />
+            <JFXTextField labelFloat="true" layoutX="49.0" layoutY="74.0" prefHeight="25.0" prefWidth="191.0" promptText="Immatricule" text="00-XF-B320" />
+            <JFXTextField labelFloat="true" layoutX="49.0" layoutY="117.0" prefHeight="25.0" prefWidth="191.0" promptText="Marque" text="B300" />
+            <JFXTextField alignment="CENTER_RIGHT" labelFloat="true" layoutX="321.0" layoutY="73.0" prefHeight="25.0" prefWidth="76.0" promptText="Personnel" text="30" />
+            <JFXTextField alignment="CENTER_RIGHT" labelFloat="true" layoutX="432.0" layoutY="73.0" prefHeight="25.0" prefWidth="76.0" promptText="Passager" text="300" />
+            <JFXTextField alignment="CENTER_RIGHT" labelFloat="true" layoutX="321.0" layoutY="117.0" prefHeight="25.0" prefWidth="76.0" promptText="Charge/Perso" text="30" />
+            <JFXTextField alignment="CENTER_RIGHT" labelFloat="true" layoutX="432.0" layoutY="117.0" prefHeight="25.0" prefWidth="76.0" promptText="Charge Max" text="30" />
+         </children>
+      </AnchorPane>
+      <AnchorPane id="ajoutEmp" layoutX="60.0" layoutY="128.0" prefHeight="202.0" prefWidth="562.0" style="-fx-background-color: #ccd7d9;" visible="false">
+         <children>
+            <JFXButton cancelButton="true" layoutX="470.0" layoutY="163.0" prefHeight="20.0" prefWidth="70.0" style="-fx-background-color: #e00000;" text="Annuler" />
+            <JFXButton defaultButton="true" disable="true" layoutX="389.0" layoutY="163.0" prefHeight="20.0" prefWidth="70.0" style="-fx-background-color: #0dbfa8;" text="Confirmer" />
+            <JFXComboBox labelFloat="true" layoutX="49.0" layoutY="30.0" prefHeight="25.0" prefWidth="256.0" promptText="Fonctionnalité" />
+            <JFXTextField labelFloat="true" layoutX="49.0" layoutY="74.0" prefHeight="25.0" prefWidth="191.0" promptText="Prenom" text="La7nin" />
+            <JFXTextField labelFloat="true" layoutX="49.0" layoutY="117.0" prefHeight="25.0" prefWidth="191.0" promptText="Nom" text="Samir" />
+            <JFXTextField alignment="CENTER_RIGHT" labelFloat="true" layoutX="364.0" layoutY="74.0" promptText="Nombre Heure" text="30" />
+            <JFXTextField alignment="CENTER_RIGHT" labelFloat="true" layoutX="364.0" layoutY="117.0" promptText="Salaire" text="300" />
+            <JFXTextField alignment="CENTER_RIGHT" labelFloat="true" layoutX="364.0" layoutY="30.0" promptText="Identifiant" text="30" />
          </children>
       </AnchorPane>
    </children>

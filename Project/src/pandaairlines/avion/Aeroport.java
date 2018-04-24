@@ -8,10 +8,10 @@ package pandaairlines.avion;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pandaairlines.db_cnx.dbcnx;
-import pandaairlines.vol.Vol;
 
 /**
  *
@@ -78,15 +78,15 @@ public class Aeroport {
     }
 
     public static Aeroport chercheraeroport(String immatricule) {
-        Aeroport aero =new Aeroport("N/A", "N/A", "N/A", "N/A");
+        Aeroport aero = new Aeroport("N/A", "N/A", "N/A", "N/A");
         try {
 
             Statement st = dbcnx.connect().createStatement();
             ResultSet rs = st.executeQuery("select * from aeroport where immatricule ='" + immatricule + "'");
             if (rs.next()) {
-                aero=new Aeroport(rs.getString("immatricule"), 
-                        rs.getString("nom"), 
-                        rs.getString("adresse"), 
+                aero = new Aeroport(rs.getString("immatricule"),
+                        rs.getString("nom"),
+                        rs.getString("adresse"),
                         rs.getString("pays"));
             }
 
@@ -96,4 +96,26 @@ public class Aeroport {
         return aero;
     }
 
+    public static ArrayList chercher_aeroport_pays(String pays) {
+        ArrayList<Aeroport> l = new ArrayList<>();
+        Aeroport a = null;
+        try {
+
+            Statement st = dbcnx.connect().createStatement();
+            ResultSet rs = st.executeQuery("select * from aeroport where pays like '" + pays + "'");
+            while (rs.next()) {
+                a = new Aeroport(rs.getString("immatricule"),
+                        rs.getString("nom"),
+                        rs.getString("adresse"),
+                        rs.getString("pays"));
+                l.add(a);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Aeroport.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        return l;
+    }
+    
 }
