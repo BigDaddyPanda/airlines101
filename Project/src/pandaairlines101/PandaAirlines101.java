@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package pandaairlines101;
 
-import java.util.Date;
 import javafx.application.Application;
+import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import jdk.nashorn.internal.ir.BreakNode;
-import pandaairlines.humanoid.Personnel;
+import pandaairlines.db_cnx.dbcnx;
 
 /**
  *
@@ -21,12 +21,21 @@ public class PandaAirlines101 extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLLogin_1.fxml"));
         Scene scene = new Scene(root);
-
+        stage.setTitle("PANDA-AIRLINES");
         stage.setScene(scene);
         stage.show();
+    }
+
+    @Override
+    public void stop() {
+        try {
+            dbcnx.deconnecter();
+        } catch (Exception e) {
+            System.out.println("Bye");
+        }
+        // Save file
     }
 
     /**
@@ -34,8 +43,6 @@ public class PandaAirlines101 extends Application {
      */
     public static void main(String[] args) {
         launch(args);
-//        System.out.println(Personnel.addPerso("sd", "dsq","21", "SQD", "dqsdqs", "sddd", 0, 0));
-//        return;
     }
 
 }

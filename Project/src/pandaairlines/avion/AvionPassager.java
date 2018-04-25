@@ -26,8 +26,8 @@ public class AvionPassager extends Avion {
         this.nbrPassages = nbrPassages;
     }
 
-    public AvionPassager(String immatricule, String nom, String marque, String compagne, int nbrPersonnel, int maintenance, int nbrpassagers) {
-        super(immatricule, nom, marque, compagne, nbrPersonnel, maintenance);
+    public AvionPassager(boolean display,String immatricule, String nom, String marque, String compagne, int nbrPersonnel, int maintenance, int nbrpassagers) {
+//        super(display,immatricule, nom, marque, compagne, nbrPersonnel, maintenance);
 
         this.nbrPassages = nbrpassagers;
     }
@@ -44,15 +44,15 @@ public class AvionPassager extends Avion {
 
             Statement st = dbcnx.connect().createStatement();
             ResultSet rs = st.executeQuery("select * from avion where idavion =" + immatricule + "and type='passager'");
-            if (!rs.wasNull()) {
+            if (rs.next()) {
 
                 a.setImmatricule(immatricule);
                 a.setNom(rs.getString("nom"));
                 a.setMarque(rs.getString("marque"));
                 a.setCompagne(rs.getString("companie"));
-                a.setNbrPersonnel(rs.getInt("nombrepersonnel"));
+                a.setNbrPersonnel(rs.getInt("nombrepersonnel")+"/");
 
-                a.setMaintenance(Integer.getInteger(rs.getString("maint")));
+                a.setMaintenance(Integer.getInteger(rs.getString("maint"))+"/");
                 return a;
             }
 

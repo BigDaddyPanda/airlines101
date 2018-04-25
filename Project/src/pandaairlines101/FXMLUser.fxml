@@ -1,85 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import com.jfoenix.controls.*?>
-<?import javafx.scene.image.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 
-<AnchorPane id="AnchorPane" prefHeight="403.0" prefWidth="691.0" style="-fx-background-color: #007abb;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pandaairlines101.FXMLUserController">
+<AnchorPane id="AnchorPane" prefHeight="403.0" prefWidth="691.0" style="-fx-background-color: #007abb;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pandaairlines101.FXMLUserController">
    <children>
-      <AnchorPane layoutX="35.0" layoutY="85.0" prefHeight="293.0" prefWidth="622.0" style="-fx-background-color: #ffffff;">
+      <AnchorPane layoutX="41.0" layoutY="78.0" prefHeight="293.0" prefWidth="622.0" style="-fx-background-color: #ffffff;">
          <children>
             <ScrollPane hbarPolicy="NEVER" layoutX="14.0" layoutY="59.0" prefHeight="200.0" prefWidth="200.0">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <JFXListView prefHeight="375.0" prefWidth="200.0" />
+                        <JFXListView fx:id="listview" prefHeight="375.0" prefWidth="200.0" />
                      </children>
                   </AnchorPane>
               </content>
             </ScrollPane>
-            <JFXTextField alignment="CENTER_RIGHT" labelFloat="true" layoutX="102.0" layoutY="24.0" prefHeight="25.0" prefWidth="112.0" promptText="filtrer">
+            <JFXTextField fx:id="filtrer" alignment="CENTER_RIGHT" labelFloat="true" layoutX="102.0" layoutY="22.0" prefHeight="25.0" prefWidth="112.0" promptText="filtrer">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
             </JFXTextField>
             <Pane layoutX="221.0" layoutY="22.0" prefHeight="111.0" prefWidth="390.0">
                <children>
-                  <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="14.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="dep_icon" fitHeight="64.0" fitWidth="64.0" layoutX="14.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../img/airplaneoff.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="195.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="arr_icon" fitHeight="64.0" fitWidth="64.0" layoutX="195.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../img/airplaneon.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="276.0" layoutY="17.0" prefHeight="17.0" prefWidth="97.0" text="Jedda AP" />
-                  <Label layoutX="104.0" layoutY="39.0" prefHeight="17.0" prefWidth="91.0" text="23/04/2018 " />
-                  <Label layoutX="88.0" layoutY="17.0" prefHeight="17.0" prefWidth="97.0" text="Venturas AP" />
-                  <JFXButton layoutX="314.0" layoutY="72.0" style="-fx-background-color: #24a398;" text="Reserver" />
+                  <Label fx:id="aeroportarrivelabel" layoutX="276.0" layoutY="17.0" prefHeight="17.0" prefWidth="97.0" text="Jedda AP" />
+                  <Label fx:id="datedepartlabel" layoutX="104.0" layoutY="39.0" prefHeight="17.0" prefWidth="91.0" text="23/04/2018 " />
+                  <Label fx:id="aeroportdepartlabel" layoutX="88.0" layoutY="17.0" prefHeight="17.0" prefWidth="97.0" text="Venturas AP" />
+                  <JFXButton fx:id="reserverbtn" layoutX="314.0" layoutY="72.0" onMouseClicked="#reserver" style="-fx-background-color: #24a398;" text="Reserver" />
                   <Label layoutX="171.0" layoutY="76.0" text="Prix:" />
-                  <Label layoutX="216.0" layoutY="76.0" text="\$22222.2" />
-                  <Label layoutX="104.0" layoutY="56.0" prefHeight="17.0" prefWidth="91.0" text="00:42" />
-                  <Label layoutX="299.0" layoutY="56.0" prefHeight="17.0" prefWidth="91.0" text="06:09" />
-                  <Label layoutX="299.0" layoutY="39.0" prefHeight="17.0" prefWidth="91.0" text="23/04/2018 " />
-                  <Label layoutX="87.0" layoutY="-6.0" prefHeight="17.0" prefWidth="97.0" text="Las Vegas" />
-                  <Label layoutX="275.0" layoutY="-6.0" prefHeight="17.0" prefWidth="97.0" text="Mecca" />
+                  <Label fx:id="prixlabel" layoutX="216.0" layoutY="76.0" text="\$22222.2" />
+                  <Label fx:id="timedepartlabel" layoutX="104.0" layoutY="56.0" prefHeight="17.0" prefWidth="91.0" text="00:42" />
+                  <Label fx:id="timearrivelabel" layoutX="299.0" layoutY="56.0" prefHeight="17.0" prefWidth="91.0" text="06:09" />
+                  <Label fx:id="datearrivelabel" layoutX="299.0" layoutY="39.0" prefHeight="17.0" prefWidth="91.0" text="23/04/2018 " />
+                  <Label fx:id="paysdepartlabel" layoutX="87.0" layoutY="-6.0" prefHeight="17.0" prefWidth="97.0" text="Las Vegas" />
+                  <Label fx:id="paysarrivelabel" layoutX="275.0" layoutY="-6.0" prefHeight="17.0" prefWidth="97.0" text="Mecca" />
                </children>
             </Pane>
             <Pane layoutX="233.0" layoutY="145.0" prefHeight="94.0" prefWidth="338.0" style="-fx-background-color: #fafafa;">
                <children>
-                  <Label layoutX="66.0" layoutY="23.0" prefHeight="17.0" prefWidth="97.0" text="Las Vegas" />
-                  <Label layoutX="66.0" layoutY="40.0" prefHeight="17.0" prefWidth="97.0" text="Las Vegas" />
-                  <ImageView fitHeight="25.0" fitWidth="22.0" layoutX="302.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
+                  <Label fx:id="aeroportdeparthistoriquelabel" layoutX="66.0" layoutY="23.0" prefHeight="17.0" prefWidth="97.0" text="Las Vegas" />
+                  <Label fx:id="aeroportarrivehistoriquelabel" layoutX="66.0" layoutY="40.0" prefHeight="17.0" prefWidth="97.0" text="Las Vegas" />
+                  <ImageView fx:id="nextbtn" fitHeight="25.0" fitWidth="22.0" layoutX="302.0" layoutY="69.0" onMouseClicked="#next" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../img/next_off.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="25.0" fitWidth="22.0" layoutX="14.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="previousbtn" fitHeight="25.0" fitWidth="22.0" layoutX="14.0" layoutY="69.0" onMouseClicked="#previous" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../img/prev_on.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="44.0" fitWidth="48.0" layoutX="291.0" layoutY="1.0" opacity="0.65" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="reservationicon" fitHeight="44.0" fitWidth="48.0" layoutX="291.0" layoutY="1.0" opacity="0.65" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../img/nextflight.png" />
                      </image>
                   </ImageView>
+                  <Label fx:id="volidlabel" layoutX="209.0" layoutY="37.0" visible="false" />
                </children>
             </Pane>
          </children>
       </AnchorPane>
-      <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="503.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="usernameicon" fitHeight="64.0" fitWidth="64.0" layoutX="503.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../img/people.png" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="406.0" layoutY="31.0" prefHeight="31.0" prefWidth="85.0" style="-fx-background-color: #ffffff;" text="Samir Lahnin" textAlignment="RIGHT" textOverrun="CLIP" wrapText="true" />
+      <Label fx:id="usernamelabel" alignment="CENTER" contentDisplay="CENTER" layoutX="406.0" layoutY="31.0" prefHeight="31.0" prefWidth="85.0" style="-fx-background-color: #ffffff;" text="Samir Lahnin" textAlignment="RIGHT" textOverrun="CLIP" wrapText="true" />
    </children>
 </AnchorPane>

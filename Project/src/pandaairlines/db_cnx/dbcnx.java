@@ -15,6 +15,7 @@ public class dbcnx {
     private static String user;
     private static String password;
     public static int identifier;
+    public static String username;
 
     public static void connecter() {
         url = "jdbc:mysql://localhost:3306/airlines";

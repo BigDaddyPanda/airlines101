@@ -18,8 +18,8 @@ import pandaairlines.db_cnx.dbcnx;
  */
 public class Admin extends Personnel {
 
-    public Admin(String nom, String prenom, String dateNaissance, String fonction, String login, String password, int nbHeure, float salaire) {
-        super(nom, prenom, dateNaissance, fonction, login, password, nbHeure, salaire);
+    public Admin(boolean b,String nom, String prenom, String dateNaissance, String fonction, String login, String password, int nbHeure, int salaire) {
+        super(b,nom, prenom, dateNaissance, fonction, login, password, nbHeure, salaire);
     }
 
     public static void ajouteravionmarchandise(int immatricule, String nom, String marque, String compagne, int nbrPersonnel, int maintenance, int massemax, int volumemax) {

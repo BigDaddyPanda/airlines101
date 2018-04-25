@@ -11,6 +11,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import pandaairlines.avion.Avion;
 import pandaairlines.db_cnx.dbcnx;
 import pandaairlines.vol.Vol;
 
@@ -27,9 +30,17 @@ public class Personnel implements Salairie {
     private String login;
     private String password;
     private int nbHeure;
-    private float salaire;
+    private int salaire;
+    private SimpleStringProperty snom;
+    private SimpleStringProperty sprenom;
+    private SimpleStringProperty sdateNaissance;
+    private SimpleStringProperty sfonction;
+    private SimpleStringProperty slogin;
+    private SimpleStringProperty spassword;
+    private SimpleIntegerProperty snbHeure;
+    private SimpleIntegerProperty ssalaire;
 
-    public Personnel(String nom, String prenom, String dateNaissance, String fonction, String login, String password, int nbHeure, float salaire) {
+    public Personnel(boolean display, String nom, String prenom, String dateNaissance, String fonction, String login, String password, int nbHeure, int salaire) {
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
@@ -38,6 +49,16 @@ public class Personnel implements Salairie {
         this.password = password;
         this.nbHeure = nbHeure;
         this.salaire = salaire;
+        if (display) {
+            snom = new SimpleStringProperty(nom);
+            sprenom = new SimpleStringProperty(prenom);
+            sdateNaissance = new SimpleStringProperty(dateNaissance);
+            sfonction = new SimpleStringProperty(fonction);
+            slogin = new SimpleStringProperty(login);
+            spassword = new SimpleStringProperty(password);
+            snbHeure = new SimpleIntegerProperty(nbHeure);
+            ssalaire = new SimpleIntegerProperty(salaire);
+        }
     }
 
     @Override
@@ -51,6 +72,7 @@ public class Personnel implements Salairie {
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
                 dbcnx.identifier = rs.getInt("idpersonnel");
+                dbcnx.username = rs.getString("nom")+" "+rs.getString("prenom");
                 return true;
             }
         } catch (SQLException e) {
@@ -62,18 +84,68 @@ public class Personnel implements Salairie {
     public static ArrayList loadFlight(String req, boolean isAdmin) {
         ArrayList<Vol> A = new ArrayList();
         try {
-            PreparedStatement st = dbcnx.
-                    connect().prepareStatement("SELECT * FROM vol WHERE '"
-                            + req + "' ");
+            PreparedStatement st = dbcnx.connect().prepareStatement("SELECT * FROM vol WHERE 1");
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                A.add(new Vol(rs.getInt(""), rs.getString("depart"),
+                //idvol depart arrive heuredepart heurearrive prix idavion
+                A.add(new Vol(true, rs.getInt("idvol"),
+                        rs.getString("depart"),
                         rs.getString("arrive"),
-                        rs.getTime("heuredepart").toString(),
-                        rs.getTime("heurearrive").toString(),
-                        rs.getString("type"), rs.getInt("prix")));
+                        rs.getString("heuredepart"),
+                        rs.getString("heurearrive"),
+                        rs.getInt("idavion"),
+                        rs.getInt("prix")));
             }
         } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Bad kittens not doing their jobs");
+        }
+        return A;
+    }
+
+    public static ArrayList loadPersonnel(String req, boolean isAdmin) {
+        ArrayList<Personnel> A = new ArrayList();
+        try {
+            PreparedStatement st = dbcnx.connect().prepareStatement("SELECT * FROM personnel WHERE 1");
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                //idvol depart arrive heuredepart heurearrive prix idavion
+                A.add(new Personnel(true,
+                        rs.getString("nom"),
+                        rs.getString("prenom"),
+                        rs.getString("datenaissance"),
+                        rs.getString("fonction"),
+                        rs.getString("login"),
+                        rs.getString("password"),
+                        rs.getInt("salaire"),
+                        rs.getInt("nbHeure")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Bad kittens not doing their jobs");
+        }
+        return A;
+    }
+
+    public static ArrayList loadAv(String req, boolean isAdmin) {
+        ArrayList<Avion> A = new ArrayList();
+        try {
+            PreparedStatement st = dbcnx.connect().prepareStatement("SELECT * FROM avion WHERE " + req);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                //idvol depart arrive heuredepart heurearrive prix idavion
+
+                A.add(new Avion(true,
+                        rs.getString("idavion"),
+                        rs.getString("nom"),
+                        rs.getString("marque"),
+                        rs.getString("companie"),
+                        rs.getString("type"),
+                        rs.getInt("nombrepassager") + "/" + rs.getInt("nombrepersonnel"),
+                        rs.getInt("massemax") + "/" + rs.getInt("volumemax")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
             System.out.println("Bad kittens not doing their jobs");
         }
         return A;

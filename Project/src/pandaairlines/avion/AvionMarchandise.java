@@ -19,8 +19,8 @@ public class AvionMarchandise extends Avion {
     private int masseMax;
     private int volumeMax;
 
-    public AvionMarchandise(String immatricule, String nom, String marque, String compagne, int nbrPersonnel, int maintenance, int massemax, int volumemax) {
-        super(immatricule, nom, marque, compagne, nbrPersonnel, maintenance);
+    public AvionMarchandise(boolean display, String immatricule, String nom, String marque, String compagne, int nbrPersonnel, int maintenance, int massemax, int volumemax) {
+//        super(display, immatricule, nom, marque, compagne, nbrPersonnel, maintenance);
         this.masseMax = massemax;
         this.volumeMax = volumemax;
     }
@@ -38,7 +38,8 @@ public class AvionMarchandise extends Avion {
             ResultSet rs = st.executeQuery("select * from avion where idavion=" + immatricule + " and type ='marchandise'");
             if (rs.next()) {
 
-                avmar = new AvionMarchandise(immatricule,
+                avmar = new AvionMarchandise(true,
+                        immatricule,
                         rs.getString("nom"),
                         rs.getString("marque"),
                         rs.getString("companie"),

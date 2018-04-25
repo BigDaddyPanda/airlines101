@@ -17,7 +17,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -29,7 +28,7 @@ import pandaairlines.humanoid.Personnel;
  *
  * @author ky94
  */
-public class FXMLLoginController implements Initializable {
+public class FXMLLogin_1Controller implements Initializable {
 
     @FXML
     private AnchorPane ap;
@@ -48,9 +47,7 @@ public class FXMLLoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        logo.setImage(new Image("file:///C:/Users/ky94/OneDrive/Documents/TIC-S2/POO%20&%20JAVA/MiniProjet/PandasAirlines/Project/img/service_airline.png"));
-        logo.setCache(false);
-    }
+    }    
 
     @FXML
     private void Handle(MouseEvent event) {
@@ -59,7 +56,7 @@ public class FXMLLoginController implements Initializable {
     @FXML
     private void login(ActionEvent event) {
         if (Personnel.login(login.getText(), password.getText())) {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLAdmin.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLUser.fxml"));
             Parent page2 = null;
             try {
                 page2 = fxmlLoader.load();
@@ -78,5 +75,4 @@ public class FXMLLoginController implements Initializable {
             System.out.println("Bad entry");
         }
     }
-
 }
