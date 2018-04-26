@@ -17,6 +17,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -47,6 +48,8 @@ public class FXMLLogin_1Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        logo.setImage(new Image("file:///C:/Users/ky94/OneDrive/Documents/TIC-S2/POO%20&%20JAVA/MiniProjet/PandasAirlines/Project/img/service_airline.png"));
+        logo.setCache(false);
     }    
 
     @FXML

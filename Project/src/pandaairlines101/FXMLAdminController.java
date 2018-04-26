@@ -21,6 +21,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -146,6 +147,8 @@ public class FXMLAdminController implements Initializable {
         // TODO
         //        loadcontent();
         usernameLabel.setText(dbcnx.username);
+        userIcon.setImage(new Image("file:///C:/Users/ky94/OneDrive/Documents/TIC-S2/POO%20&%20JAVA/MiniProjet/PandasAirlines/Project/img/people.png"));
+        userIcon.setCache(false);
     }
 
     @FXML

@@ -72,12 +72,13 @@ public class Vol {
     static public void ajouterClient(int idclient, int vol) {
         try {
             Statement st = dbcnx.connect().createStatement();
-            ResultSet rs = st.executeQuery("select * from reservation where idclient= " + idclient + "idvol=" + vol);
+            ResultSet rs = st.executeQuery("select * from reservation where idclient= " +
+                    idclient + "idvol=" + vol);
             if (rs.wasNull()) {
                 PreparedStatement s = dbcnx.connect().prepareStatement("insert into reservation values(?,?,'?',?)");
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH.mm.ss");
-                System.err.println(sdf.format(System.currentTimeMillis()));
-                Timestamp t = new Timestamp(System.currentTimeMillis());
+//                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH.mm.ss");
+//                System.err.println(sdf.format(System.currentTimeMillis()));
+//                Timestamp t = new Timestamp(System.currentTimeMillis());
                 s.setInt(0, idclient);
                 s.setInt(1, vol);
                 s.executeUpdate();
@@ -186,6 +187,7 @@ public class Vol {
 
     public void setHeureDepart(String heureDepart) {
         this.heureDepart = heureDepart;
+       
     }
 
     public void setHeureArrive(String heureArrive) {
@@ -194,6 +196,43 @@ public class Vol {
 
     public void setPrix(int prix) {
         this.prix = prix;
+    }
+
+    @Override
+    public String toString() {
+        return "Vol{" + "volId=" + volId + ", vDepart=" + vDepart + ", vArrive=" + vArrive + ", heureDepart=" + heureDepart + ", heureArrive=" + heureArrive + ", immatricule=" + immatricule + ", type=" + type + ", prix=" + prix + ", svolId=" + svolId + ", svDepart=" + svDepart + ", svArrive=" + svArrive + ", sheureDepart=" + sheureDepart + ", sheureArrive=" + sheureArrive + ", simmatriculeAv=" + simmatriculeAv + ", stype=" + stype + ", sprix=" + sprix + '}';
+    }
+
+    public Integer getSvolId() {
+        return svolId.get();
+    }
+
+    public String getSvDepart() {
+        return svDepart.get();
+    }
+
+    public SimpleStringProperty getSvArrive() {
+        return svArrive;
+    }
+
+    public SimpleStringProperty getSheureDepart() {
+        return sheureDepart;
+    }
+
+    public SimpleStringProperty getSheureArrive() {
+        return sheureArrive;
+    }
+
+    public SimpleIntegerProperty getSimmatriculeAv() {
+        return simmatriculeAv;
+    }
+
+    public SimpleStringProperty getStype() {
+        return stype;
+    }
+
+    public SimpleIntegerProperty getSprix() {
+        return sprix;
     }
 
 }

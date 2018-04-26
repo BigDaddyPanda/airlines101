@@ -21,7 +21,7 @@ public class PandaAirlines101 extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLLogin_1.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));
         Scene scene = new Scene(root);
         stage.setTitle("PANDA-AIRLINES");
         stage.setScene(scene);
